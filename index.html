@@ -1,0 +1,417 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>SIP Presentation - Indrajith K L</title>
+
+		<meta name="description" content="A Presentation about SIP">
+		<meta name="author" content="Indrajith K L">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/default.css" id="theme">
+        <link rel="stylesheet" href="css/style.css">
+		
+		<style>
+		.sideImage{
+			float:right;
+		}
+		</style>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+        
+         <script>
+
+        var nw = require('nw.gui');
+        var win = nw.Window.get();
+        win.isMaximized = false;
+
+    </script>
+        
+	</head>
+
+	<body>
+		<div class="reveal">
+            <header>
+        <ul>
+            <li><a href='#' title='Minimize' id='windowControlMinimize'></a></li><!--
+         --><li><a href='#' title='Maximize' id='windowControlMaximize'></a></li><!--
+         --><li><a href='#' title='Close'    id='windowControlClose'   ></a></li>
+            </ul>
+        </header>
+			<div class="slides">
+				<section>
+					<h1>SIP</h1>
+					<h2>Session Initiation Protocol</h2>
+					<p>
+						Presentation by <a href="http://indrajithkl.bitbucket.org">Indrajith K L</a>
+					</p>
+					<small>Made with <a href="https://github.com/hakimel/reveal.js">Reveal.js</a> and <a href="https://github.com/rogerwang/node-webkit">Node-webkit</a></small>
+				</section>
+				<section id="1">
+						<h2>SIP?</h2>
+						<ul>
+							<li class="fragment">Signalling Protocol</li>
+							<li class="fragment">Control Multimedia Session</li>
+							<li class="fragment">Glue to tie Comm.Sys with server</li>
+							<li class="fragment">Used in VOIP systems</li>
+						</ul>
+
+						<!--<aside class="notes">
+							This slide has fragments which are also stepped through in the notes window.
+						</aside> -->
+				</section>
+				<section id="2">
+					<h2>UA, UAC & UAS</h2>
+					<img src="img/Picture1.gif">
+					
+					<ul style="float:left">
+						<li class="fragment">Entities which interacts in SIP - UA</li>
+						<li class="fragment">UA are of two types
+							<ul>
+								<li class="fragment grow">UAC - User Agent Client</li>
+								<li class="fragment grow">UAS - User Agent Server</li>
+							</ul>
+						</li>
+					</ul>
+					
+				</section>
+				<section id="3">
+					<h2>UA, UAC & UAS</h2>
+					<ul style="float:left">
+						<li class="fragment">UAC generates methods and send them to server</li>
+						<li class="fragment">UAS receives methods, process them and generate responses.</li>
+						<li class="fragment">UAS is the generic name of device that receives method.</li>
+
+					</ul>
+					
+				</section>
+				
+				<section id="4">
+					<h2>Who’s UAS and UAC?</h2>
+					<ul style="float:left">
+						<li class="fragment">In SIP one can act as both UAS and UAC</li>
+						<img class="fragment" src="img/smiley_think.png" width="50" height="50">
+						<li class="fragment">It depends on who initiates the call and who accepts it.</li>
+						<li class="fragment">UA’s are identified by an unique URI.</li>
+
+					</ul>
+					
+				</section>
+				<section id="5">
+				<h2>The Unique URI</h2>
+				<img src="img/uniqueuri.png" width="600" height="600"/>
+				</section>
+				
+				<section id="6">
+					<h2>Proxy servers in SIP</h2>
+					<ul style="float:left">
+						<li class="fragment">SIP comm. are routed through one ore more SIP server</li>
+						<li class="fragment"><b>Proxy Servers</b> track down IP’s of the caller and receiver.</li>
+						<li class="fragment">If one Proxy Server cannot find an IP it will send request to other proxy server and so on…</li>
+
+					</ul>
+					
+				</section>
+				
+				<section id="7">
+					<h2>Proxy servers in SIP</h2>
+					<ul style="float:left">
+						<li class="fragment">If <b>A</b> calls <b>B</b>, <b>A</b> only knows <b>‘SIP URI’</b> of <b>B</b>.</li>
+						<li class="fragment">Proxy server will evaluate the rest of the hard work</li>
+						<li class="fragment">Proxy Server uses presence services to track users which can be located regardless of their physical location.</li>
+					</ul>		
+				</section>
+				<section id="8">
+					<h2>Proxy servers in SIP</h2>
+					<ul style="float:left">
+						<li class="fragment">So what is a presence service?
+							<ul>
+								<li class="fragment">Normally a request like REGISTER.</li>
+							</ul>
+						</li>
+						<li class="fragment">What REGISTER?
+							<ul>
+								<li class="fragment">REGISTER is a request to the server which is used to show availability of a UA.</li>
+								<li class="fragment">To check wheather UA is reachable or not.</li>
+							</ul>
+						</li>
+					</ul>		
+				</section>
+				<section id="9">
+					<h2>Registrar Server</h2>
+					<ul style="float:left">
+						<li class="fragment">Responsible for registering devices in an SIP comm.</li>
+						<li class="fragment">Authenticate UA with username and password</li>
+						<li class="fragment">Keeps table of IP addresses and extension phone numbers.</li>
+						<li class="fragment">Ex : Asterisk,Brekeke, TekSIP….</li>
+					</ul>		
+				</section>
+				<section id="10">
+					<h2>SIP Requests and Responses</h2>
+					<ul style="float:left">
+						<li class="fragment">There are 6 basic request in SIP
+							<ul>
+								<li class="fragment">INVITE</li>
+								<li class="fragment">REGISTER</li>
+								<li class="fragment">BYE</li>
+								<li class="fragment">ACK</li>
+								<li class="fragment">CANCEL</li>
+								<li class="fragment">OPTIONS</li>
+							</ul>
+						</li>
+					</ul>		
+				</section>
+				<section id="11">
+					<h2>SIP Requests and Responses</h2>
+					<ul style="float:left">
+						<li class="fragment">There are many responses in SIP, so they are generalized like this
+							<ul>
+								<li class="fragment">1xx</li>
+								<li class="fragment">2xx</li>
+								<li class="fragment">3xx</li>
+								<li class="fragment">4xx</li>
+								<li class="fragment">5xx</li>
+								<li class="fragment">6xx</li>
+							</ul>
+						</li>
+					</ul>		
+				</section>
+				<section id="12">
+					<section>
+					<h2>Requests in SIP</h2>
+					<ul style="float:left">
+						<li class="fragment">INVITE
+							<ul>
+								<li class="fragment">Establishes a session</li>
+							</ul>
+						</li>
+						<li class="fragment">REGISTER
+							<ul>
+								<li class="fragment">Register user with server – the SIP server</li>
+							</ul>
+						</li>
+						<li class="fragment">BYE
+							<ul>
+								<li class="fragment">Ends a session</li>
+							</ul>
+						</li>
+						<li class="fragment">ACK
+							<ul>
+								<li class="fragment">Confirms an INVITE request</li>
+							</ul>
+						</li>
+						<li class="fragment">CANCEL
+							<ul>
+								<li class="fragment">Cancels establishing a session.</li>
+							</ul>
+						</li>
+						<li class="fragment">OPTIONS
+							<ul>
+								<li class="fragment">Contains info about capabilities of callie and receiver.</li>
+							</ul>
+						</li>
+						</ul>
+						</section>
+						<section>
+						<ul>
+						<li class="fragment">There are many more
+
+							<ul>
+								<li class="fragment">SUBSCRIBE</li>
+							</ul>
+							<ul>
+								<li class="fragment">NOTIFY</li>
+							</ul>
+							<ul>
+								<li class="fragment">INFO</li>
+							</ul>
+							<ul>
+								<li class="fragment">.....</li>
+							</ul>
+
+						</li>
+						</ul>
+						</section>
+					
+				</section>
+				<section id="13">
+					<h2>SIP Responses</h2>
+					<ul style="float:left">
+						<li class="fragment">1xx
+							<ul>
+								<li class="fragment">They are basically information responses.</li>
+								<p class="fragment">Ex : 100 Trying, 180 Ringing</p>
+							</ul>
+						</li>
+						<li class="fragment">2xx
+							<ul>
+								<li class="fragment">They are Success responses</li>
+								<p class="fragment">Ex : 200 OK</p>
+							</ul>
+						</li>
+							<li class="fragment">3xx
+							<ul>
+								<li class="fragment">Redirection responses</li>
+								<p class="fragment">Ex : 305 Use Proxy</p>
+								<p class="fragment">Ex : 301 Moved Permanently</p>
+							</ul>
+						</li>
+					</ul>
+				</section>
+				<section id="14">
+					<h2>SIP Responses</h2>
+					<ul style="float:left">
+						<li class="fragment">4xx
+							<ul>
+								<li class="fragment">Request failures</li>
+								<p class="fragment">Ex : 400 Bad Requests, 404 Not found</p>
+							</ul>
+						</li>
+						<li class="fragment">5xx
+							<ul>
+								<li class="fragment">Server Error</li>
+								<p class="fragment">Ex : 504 Server Timeout, 500 Server Internal Error</p>
+							</ul>
+						</li>
+							<li class="fragment">6xx
+							<ul>
+								<li class="fragment">Global failures</li>
+								<p class="fragment">Ex : 600 Busy Everywhere, 606 Not Acceptable.</p>
+							</ul>
+						</li>
+					</ul>
+				</section>
+				<section id="15">
+					<h2>Test Case</h2>
+                    <ul>
+                        <li class="fragment">Callie – 5002@95.154.203.171:5161</li>
+                        <small class="fragment">Username : 5002
+                                                <br/>Password : Iwillnottellyouburn
+                        </small>
+                        <li class="fragment">Receiver – 5001@95.154.203.171:5161</li>
+                        <small class="fragment">Username : 5001
+                                                <br/>Password : AgainIwillnottellyouburn
+                        </small>
+                        <li class="fragment">SIP Registrar(Server) - 95.154.203.171:5161</li>
+                        <small class="fragment">Running Asterisk Server</small>
+                    </ul>
+				</section>
+                <section id="16">
+					<h2>Inviting..</h2>
+                    <img src="img/sipMessages/1.png" width="800" height="600">
+				</section>
+                <section id="17">
+					<h2>Inviting..</h2>
+                    <img src="img/sipMessages/2.png" width="800" height="600">
+				</section>
+                <section id="18">
+					<h2>Inviting.. Unauthorized!</h2>
+                    <img src="img/sipMessages/3.png" width="800" height="600">
+				</section>
+                <section id="19">
+					<h2>Inviting.. Authorizing</h2>
+                     <small>(Uses <a href="http://en.wikipedia.org/wiki/Digest_access_authentication">Digest access authentication</a>)</small>
+                    <img src="img/sipMessages/4.png" width="800" height="600">
+                   
+				</section>
+                <section id="20">
+					<h2>Inviting.. Trying...</h2>
+                    <img src="img/sipMessages/7.png" width="800" height="600">
+				</section>
+                <section id="21">
+					<h2>Inviting.. Got you! Ringing...</h2>
+                    <img src="img/sipMessages/8.png" width="800" height="600">
+				</section>
+                <section id="22">
+					<h2>Connected...</h2>
+                    <img src="img/sipMessages/9.png" width="800" height="600">
+				</section>
+                <section id="23">
+					<h2>Hi There</h2>
+                    <img src="img/sipMessages/10.png" width="800" height="600">
+				</section>
+                <section id="24">
+                    <img src="img/thankyou.png" style="border:none;background:none">
+                </section>
+			</div>
+		</div>
+        
+         <script>
+
+            // Min
+            document.getElementById('windowControlMinimize').onclick = function()
+            {
+                win.minimize();
+            };
+
+            // Close
+            document.getElementById('windowControlClose').onclick = function()
+            {
+                win.close();
+            };
+
+            // Max
+            document.getElementById('windowControlMaximize').onclick = function()
+            {
+                if (win.isMaximized)
+                    win.unmaximize();
+                else
+                    win.maximize();
+            };
+
+            win.on('maximize', function(){
+                win.isMaximized = true;
+            });
+
+            win.on('unmaximize', function(){
+                win.isMaximized = false;
+            });
+
+
+        </script>
+        
+        
+        
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Parallax scrolling
+				parallaxBackgroundImage: 'img/1920x1080.png',
+				parallaxBackgroundSize: '1920px 1080px',
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+	</body>
+	
+</html>
