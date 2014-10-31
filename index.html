@@ -30,9 +30,6 @@
         
          <script>
 
-        var nw = require('nw.gui');
-        var win = nw.Window.get();
-        win.isMaximized = false;
 
     </script>
         
@@ -41,10 +38,10 @@
 	<body>
 		<div class="reveal">
             <header>
-        <ul>
-            <li><a href='#' title='Minimize' id='windowControlMinimize'></a></li><!--
-         --><li><a href='#' title='Maximize' id='windowControlMaximize'></a></li><!--
-         --><li><a href='#' title='Close'    id='windowControlClose'   ></a></li>
+      <ul>
+            <li><a href='#' title='Minimize' id='windowControlMinimize'></a></li>
+         <li><a href='#' title='Maximize' id='windowControlMaximize'></a></li>
+        <li><a href='#' title='Close'    id='windowControlClose'   ></a></li>
             </ul>
         </header>
 			<div class="slides">
@@ -54,15 +51,16 @@
 					<p>
 						Presentation by <a href="http://indrajithkl.bitbucket.org">Indrajith K L</a>
 					</p>
-					<small>Made with <a href="https://github.com/hakimel/reveal.js">Reveal.js</a> and <a href="https://github.com/rogerwang/node-webkit">Node-webkit</a></small>
+					<small>Made with <a href="https://github.com/hakimel/reveal.js">Reveal.js</a> and <a href="https://github.com/atom/atom-shell/">Atom-shell</a></small>
 				</section>
 				<section id="1">
 						<h2>SIP?</h2>
 						<ul>
-							<li class="fragment">Signalling Protocol</li>
+							<li class="fragment">SIP was originally designed by <a href="http://en.wikipedia.org/wiki/Henning_Schulzrinne">Henning Schulzrinne</a> and <a href="http://en.wikipedia.org/wiki/Mark_Handley_%28computer_scientist%29">Mark Handley</a> in 1996</li>
 							<li class="fragment">Control Multimedia Session</li>
+							<li class="fragment">Signalling Protocol</li>
 							<li class="fragment">Glue to tie Comm.Sys with server</li>
-							<li class="fragment">Used in VOIP systems</li>
+							<li class="fragment">Used in <a href="http://en.wikipedia.org/wiki/Voice_over_IP">VOIP</a> systems</li>
 						</ul>
 
 						<!--<aside class="notes">
@@ -346,40 +344,12 @@
 			</div>
 		</div>
         
+
          <script>
 
-            // Min
-            document.getElementById('windowControlMinimize').onclick = function()
-            {
-                win.minimize();
-            };
-
-            // Close
-            document.getElementById('windowControlClose').onclick = function()
-            {
-                win.close();
-            };
-
-            // Max
-            document.getElementById('windowControlMaximize').onclick = function()
-            {
-                if (win.isMaximized)
-                    win.unmaximize();
-                else
-                    win.maximize();
-            };
-
-            win.on('maximize', function(){
-                win.isMaximized = true;
-            });
-
-            win.on('unmaximize', function(){
-                win.isMaximized = false;
-            });
-
-
+         
         </script>
-        
+  
         
         
 		<script src="lib/js/head.min.js"></script>
